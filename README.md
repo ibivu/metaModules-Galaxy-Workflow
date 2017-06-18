@@ -1,7 +1,7 @@
 # Tutorial for metaModules Galaxy Workflow
 This is the tutorial to guide you to deploy the Galaxy workflo for metaModules, which is a recently developed metatranscriptomics computational workflow to automate identification of key functional differences between health- and disease-associated microbiomes.
 
-This is tutorial has been evaluated by a MSc assignment for the course "[Bioinformatics for Translational Medicine](https://goo.gl/ggXp12)" at Free University Amsterdam (Vrije Universiteit Amsterdam).
+This is tutorial is prepared based on the evaluated [MSc tutorial](https://github.com/ibivu/metaModules-Galaxy-Workflow) for the course "[Bioinformatics for Translational Medicine](https://goo.gl/ggXp12)" at Free University Amsterdam (Vrije Universiteit Amsterdam).
 
 ## Overview of the workflow in Galaxy
 ![Visualisation of the workflow](https://github.com/ibivu/metaModules-Galaxy-Workflow/blob/master/pics/metaModules_Galaxy.png)
