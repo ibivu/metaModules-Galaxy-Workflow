@@ -1,0 +1,61 @@
+<tool id="heinz_scoring" name="Calculate Heinz scores" version="0.1.0">
+    <description>(weight) as part of the input for Heinz</description>
+    <requirements>
+      <requirement type="package" version="3.6.0">python</requirement>
+      <requirement type="package" version="0.19.2">pandas</requirement>
+      <requirement type="package" version="1.12.0">numpy</requirement>
+    </requirements>
+    <command>
+      python3.6 $__tool_directory__/heinz_scoring.py -n $input1 -f $input2 -o $output1
+      #if str( $input_type.input_type_selector ) == "bum_type":
+          -a $input_type.input3 -l $input_type.input4
+      #else:
+          -m $input_type.input_bum
+      #end if
+    </command>
+    <inputs>
+      <param type="data" name="input1" format="txt" label="Node file with p-values" />
+      <param type="float" name="input2" value="0.5" min="0" max="1" label="FDR" />
+      <conditional name="input_type">
+        <param name="input_type_selector" type="select" label="Choose your input type for BUM parameters">
+          <option value="bum_output" selected="True">The output file of BUM model</option>
+          <option value="bum_type">Manually type the parameters of BUM model.</option>
+        </param>
+        <when value="bum_type">
+          <param type="float" name="input3" value="0.5" min="0" max="1" label="a" />
+          <param type="float" name="input4" value="0.5" min="0" max="1" label="lambda" />
+        </when>
+        <when value="bum_output">
+          <param type="data" name="input_bum" format="txt" label="Output file of BUM model as input" />
+        </when>
+      </conditional>
+    </inputs>
+    <outputs>
+      <data name="output1" format="txt" label="${tool.name} on ${on_string}: Heinz scores" />
+    </outputs>
+    <help><![CDATA[
+        This tool is used to generate the score for each node.
+
+        The "Node file with p-values" should be like this:
+
+        ========= ===================
+        K10970    0.00278208628672861
+        --------- -------------------
+        K10780    0.0029566591795884
+        --------- -------------------
+        K01484    0.0157152504694443
+        --------- -------------------
+        K09055    0.0188894478579773
+        ========= ===================
+
+        "Choose your input type for BUM parameters" has two types of input:
+
+        1. The output of BUM model (another Galaxy tool you need to develop in Part 2)
+
+        2. Manually type the parameters (You need this in Part 1 of the assignment).
+    ]]></help>
+    <citations>
+      <citation type="doi">10.1093/bioinformatics/btn161</citation>
+      <citation type="doi">10.1093/bioinformatics/btg148</citation>
+    </citations>
+</tool>
